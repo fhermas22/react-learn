@@ -1,28 +1,23 @@
 import { Fragment, useState } from "react";
 
 function App() {
-  
-  const [person, setPerson] = useState({
-    firstname: 'John',
-    lastname: 'Doe',
-    age: 18
-  });
 
-  const [count, setCount] = useState(0);
+  const [value, setValue] = useState('');
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  }
 
-  const incrementAge = () => {
-    setPerson({...person, age: person.age + 1});
-  };
+  const [checked, setChecked] = useState(true);
+  const toggleChecked = () => {
+    setChecked(!checked);
+  }
 
-  const incrementCount = () => {
-    setCount(count + 1);
-  };
+  return <form>
+    <textarea value={value} onChange={handleChange} />
+    <input type="checkbox" checked={checked} onChange={toggleChecked} />
+    <button disabled={!checked}>Envoyer</button>
+  </form>
 
-  return <>
-    <p>Age de {person.firstname} : {person.age }</p>
-    <button onClick={incrementAge}>Gagner une année</button>
-    <button onClick={incrementCount}>Incrémenter {count}</button>
-  </>
 }
 
 export default App
